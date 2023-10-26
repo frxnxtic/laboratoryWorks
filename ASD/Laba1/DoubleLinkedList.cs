@@ -77,22 +77,23 @@ namespace Laba1
 
         public IEnumerator<T> GetEnumerator()
         {
-            throw new NotImplementedException();
+            return this;
         }
+        
 
         public bool MoveNext()
         {
-            throw new NotImplementedException();
+            return true;
         }
 
         public void Reset()
         {
-            throw new NotImplementedException();
+
         }
 
         IEnumerator IEnumerable.GetEnumerator()
         {
-            throw new NotImplementedException();
+            return GetEnumerator();
         }
     }
 }

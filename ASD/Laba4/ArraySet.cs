@@ -18,43 +18,73 @@ namespace Laba1.Laba4
             index = 0;
         }
 
-        public int Count => throw new NotImplementedException();
+        public int Count => array.Length;
 
-        public bool IsReadOnly => throw new NotImplementedException();
+        public bool IsReadOnly => false;
 
         public void Add(T item)
         {
-            throw new NotImplementedException();
+            if (index == array.Length)
+            {
+                throw new InvalidOperationException("Set is full");
+            }
+
+            if (array.Contains(item))
+            {
+                throw new InvalidOperationException("Set already contains this item");
+            }
+
+            array[index] = item;
+            index++;
         }
 
         public void Clear()
         {
-            throw new NotImplementedException();
+            array = new T[array.Length];
+            index = 0;
         }
 
         public bool Contains(T item)
         {
-            throw new NotImplementedException();
+            return array.Contains(item);
         }
 
         public void CopyTo(T[] array, int arrayIndex)
         {
-            throw new NotImplementedException();
+            array.CopyTo(array, arrayIndex);
         }
 
         public IEnumerator<T> GetEnumerator()
         {
-            throw new NotImplementedException();
+            return array.Take(index).GetEnumerator();
         }
 
         public bool Remove(T item)
         {
-            throw new NotImplementedException();
+            if (!array.Contains(item))
+            {
+                return false;
+            }
+
+            var newArray = new T[array.Length];
+            var newIndex = 0;
+            for (int i = 0; i < index; i++)
+            {
+                if (!array[i].Equals(item))
+                {
+                    newArray[newIndex] = array[i];
+                    newIndex++;
+                }
+            }
+
+            array = newArray;
+            index = newIndex;
+            return true;
         }
 
         IEnumerator IEnumerable.GetEnumerator()
         {
-            throw new NotImplementedException();
+            return array.Take(index).GetEnumerator();
         }
     }
 }
