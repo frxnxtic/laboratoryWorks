@@ -18,8 +18,22 @@ namespace Laba1.Laba4
             tail = null;
         }
 
-        public int Count => throw new NotImplementedException();
+        public int Count
+        {
+            get
+            {
+                int count = 0;
+                Node<T> current = head;
 
+                while (current != null)
+                {
+                    count++;
+                    current = current.next;
+                }
+
+                return count;
+                }
+            }
         public bool IsReadOnly => false;
 
         public void Add(T item)

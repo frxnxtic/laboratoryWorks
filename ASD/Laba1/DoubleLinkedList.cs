@@ -66,13 +66,13 @@ namespace Laba1
 
 
 
-        public T Current => throw new NotImplementedException();
+        public T Current => iterator!.info;
 
-        object IEnumerator.Current => throw new NotImplementedException();
+        object IEnumerator.Current => Current;
 
         public void Dispose()
         {
-            throw new NotImplementedException();
+            iterator = null;
         }
 
         public IEnumerator<T> GetEnumerator()
@@ -83,11 +83,21 @@ namespace Laba1
 
         public bool MoveNext()
         {
-            return true;
+            if (iterator != null)
+            {
+                iterator = iterator.next;
+                if (iterator == null)
+                {
+                    return false;
+                }
+                return true;
+            }
+            return false;
         }
 
         public void Reset()
         {
+            iterator = head;
 
         }
 
