@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Laba1.Laba3
 {
-    internal class ArrayQueue<T> : IQueue<T>
+    internal class ArrayQueue<T> : IQueue<T>, IEnumerable<T>
     {
         private int pos = -1;
         private T[] array;
@@ -42,6 +43,19 @@ namespace Laba1.Laba3
             }
 
             return array[pos];
+        }
+
+        public IEnumerator<T> GetEnumerator()
+        {
+            for (int i = pos; i >= 0; i--)
+            {
+                yield return array[i];
+            }
+        }
+
+        IEnumerator IEnumerable.GetEnumerator()
+        {
+            return GetEnumerator();
         }
     }
 }

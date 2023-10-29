@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Laba1.Laba2
 {
-    internal interface ISet<T>
+    internal interface IStack<T>
     {
         public void Push(T element);
         public T Pop();

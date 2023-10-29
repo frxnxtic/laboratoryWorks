@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,12 +7,12 @@ using System.Threading.Tasks;
 
 namespace Laba1.Laba2
 {
-    internal class ArraySet<T> : ISet<T>
+    internal class ArrayStack<T> : IStack<T>, IEnumerable<T>
     {
         private int pos = -1;
         private T[] array;
 
-        public ArraySet(int size)
+        public ArrayStack(int size)
         {
             array = new T[size];
         }
@@ -42,6 +43,19 @@ namespace Laba1.Laba2
             }
 
             return array[pos];
+        }
+
+        public IEnumerator<T> GetEnumerator()
+        {
+            for (int i = pos; i >= 0; i--)
+            {
+                yield return array[i];
+            }
+        }
+
+        IEnumerator IEnumerable.GetEnumerator()
+        {
+            return GetEnumerator();
         }
     }
 }

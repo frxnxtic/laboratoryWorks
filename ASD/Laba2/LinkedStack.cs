@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,11 +7,11 @@ using System.Threading.Tasks;
 
 namespace Laba1.Laba2
 {
-    internal class LinkedSet<T> : ISet<T>
+    internal class LinkedStack<T> : IStack<T>, IEnumerable<T>
     {
         private Node<T>? head;
 
-        public LinkedSet()
+        public LinkedStack()
         {
             head = null;
         }
@@ -41,6 +42,21 @@ namespace Laba1.Laba2
             }
 
             return head.data;
+        }
+
+        public IEnumerator<T> GetEnumerator()
+        {
+            Node<T>? node = head;
+            while (node != null)
+            {
+                yield return node.data;
+                node = node.next;
+            }
+        }
+
+        IEnumerator IEnumerable.GetEnumerator()
+        {
+            return GetEnumerator();
         }
     }
 }
